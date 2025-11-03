@@ -1,0 +1,14 @@
+# Executable files
+*.exe
+*.out
+a.out
+
+
+*.o
+*.obj
+
+build/
+bin/
+
+.vscode/
+.idea/
