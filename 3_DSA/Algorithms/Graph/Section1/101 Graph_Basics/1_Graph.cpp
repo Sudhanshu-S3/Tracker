@@ -138,18 +138,19 @@ class GraphEdges
 };
 
 
-/* Type of Graph */
+/* 
 
-// 1. Weighted vs Unweighted
-/*
+Type of Graph
+
+1. Weighted vs Unweighted
+
     weighted graph => vector<vector<pair<int,int>>> graph(nodes, vector<int> (vertices attached , weight of the edge))
 
     Unweighted Graph => vector<vector<int>> graph(node , vector<int> (vertice attached to it))
 
-*/
 
-// 2. Directed vs Undirected
-/*
+2. Directed vs Undirected
+
 {
     In Directed Graph only one way movement is allowed. In syntax we store it like this
 
@@ -160,9 +161,9 @@ class GraphEdges
     eg:- graph[a][b] = weightA or 1;
          graph[b][a] = weightA or 1;
 }
-*/
-// 3. Cyclic vs Acyclic
-/*
+
+3. Cyclic vs Acyclic
+
     Whether the graph is cyclic or acyclic depends on runtime input (e.g., the edges provided).
 
     To detect cycles, use algorithms like DFS with back-edge detection or Union-Find.
@@ -175,9 +176,9 @@ class GraphEdges
 int main()
 {
 
-    GraphList abjList;
+    GraphList adjList;
 
-    abjList.printGraph();
+    adjList.printGraph();
 
     Graph mat;
 
