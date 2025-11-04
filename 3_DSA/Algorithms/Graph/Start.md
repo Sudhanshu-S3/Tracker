@@ -40,7 +40,7 @@ Practice milestones:
 Goal: Move to weighted variants, SCCs, MSTs, and DSU.
 
 ### 5. Shortest Path Variants
-- Bellman–Ford (negative weights)
+
 - Floyd–Warshall (all-pairs)
 - Shortest path on DAG (topo + DP)
 - K-shortest paths, limited-edge shortest paths
