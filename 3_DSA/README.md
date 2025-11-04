@@ -1,6 +1,3 @@
-# My DSA Practice Recap
-
-This repository is my personal reference guide for mastering Data Structures and Algorithms (DSA) for technical interviews. The goal is to keep things simple, clean, and focused on what really matters.
 
 ## File Structure 
 

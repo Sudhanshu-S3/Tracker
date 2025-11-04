@@ -15,8 +15,8 @@ using namespace std;
 
 // 1.The Adjacency Matrix Implementation of Graph
 
-class Graph {
-
+class Graph 
+{
     private:
 
         int nodes, edges;
@@ -26,16 +26,16 @@ class Graph {
 
     public:
 
-        Graph(){
-
+        Graph()
+        {
             cin>> nodes >> edges;
 
             graph.resize(nodes, vector<int> (nodes, -1));
 
             cout<<"Enter" << edges << " number of edges like ( node1 , node2 , weight :)" << endl;
 
-            for(int i=0 ; i< edges ; i++){
-                
+            for(int i=0 ; i< edges ; i++)
+            {
                 int a , b , weight;
                 cin>>a>>b>> weight ;
 
@@ -44,15 +44,15 @@ class Graph {
             }
         }
 
-        void printGraph(){
-
-            for(int i =0 ; i<nodes; i++){
+        void printGraph()
+        {
+            for(int i =0 ; i<nodes; i++)
+            {
                 cout<<"Edges from Nodes : " << i << endl;
-                for(int j = 0 ; j < nodes; j++){
-
+                for(int j = 0 ; j < nodes; j++)
+                {
                     if(i == j) continue;
                     if(graph[i][j] == -1) continue;
-
                     
                     cout<< "Node " << i << " to Node " << j<< " weight " << graph[i][j] <<endl;
                 }
@@ -64,8 +64,8 @@ class Graph {
 
 // Now Lets implement the Adjacency List implementation 
 
-class GraphList {
-
+class GraphList 
+{
     private:
         int nodes , edges ;
 
@@ -73,11 +73,12 @@ class GraphList {
 
     public:
 
-        GraphList(){
-
+        GraphList()
+        {
             cin>> nodes >> edges;
 
-            for(int i = 0 ; i< edges ; i++){
+            for(int i = 0 ; i< edges ; i++)
+            {
                 int u , v ,weight;
                 cin>>u >> v >> weight;
                 graphList[u].push_back({v,weight});
@@ -87,23 +88,25 @@ class GraphList {
 
         }
 
-        void printGraph(){
-
-            for(int i = 0 ; i< nodes; i++){
+        void printGraph()
+        {
+            for(int i = 0 ; i< nodes; i++)
+            {
                 cout<< "Edges from Node " << i << " : "<<endl;
                 
-                for(auto & a : graphList[i] ){
+                for(auto & a : graphList[i] )
+                {
                     cout<< "From Node" << i << " to Node " << a.first << " weight :" <<a.second <<endl;
                 }
             }
-
         }
 
 };
 
 // 3. Graph Implementation Using EDGE list
 
-class GraphEdges{
+class GraphEdges
+{
     private : 
         int nodes,vertices,weights;
         
@@ -111,19 +114,23 @@ class GraphEdges{
 
     public:
 
-        GraphEdges(){
+        GraphEdges()
+        {
             cin>>nodes>>vertices;
 
-            for(int i= 0 ; i< vertices ; i++){
+            for(int i= 0 ; i< vertices ; i++)
+            {
                 int u,v,w;
                 cin>>u>>v>>w;
                 graph.push_back({u,v,w});
             }
         }
 
-        void printGraph(){
+        void printGraph()
+        {
 
-            for(int i=0 ; i< vertices ; i++){
+            for(int i=0 ; i< vertices ; i++)
+            {
                 auto [u,v,w] = graph[i];
                 cout<<u<<" "<<v<<" "<<w<<endl;
             }
@@ -165,7 +172,8 @@ class GraphEdges{
         Note: This isn't sufficient for all cases (e.g., disconnected or directed graphs).
 */
 
-int main(){
+int main()
+{
 
     GraphList abjList;
 

@@ -28,16 +28,17 @@ using namespace std;
 
 */
 
-void DFSre(int node, vector<vector<int>>& adj , vector<bool>& visited){
-
+void DFSre(int node, vector<vector<int>>& adj , vector<bool>& visited)
+{
     visited[node] = true;
 
     cout<<node<<" ";
 
-    for(auto u: adj[node]){
+    for(auto u: adj[node])
+    {
 
-        if(!visited[u]){
-            
+        if(!visited[u])
+        {
             DFSre(u, adj, visited);
         }
     }
@@ -47,9 +48,8 @@ void DFSre(int node, vector<vector<int>>& adj , vector<bool>& visited){
 // Iterative DFS using STACK
 
 
-void DFSit(int node, vector<vector<int>>& graph ){
-
-
+void DFSit(int node, vector<vector<int>>& graph )
+{
     //1. Step 1 : Creating Stack & visited Array.
 
     stack<int> st;
@@ -59,19 +59,22 @@ void DFSit(int node, vector<vector<int>>& graph ){
 
     st.push(node);
 
-    while(!st.empty()){
+    while(!st.empty())
+    {
         int current = st.top();
         st.pop();
 
-        if(!visited[current]){
-
+        if(!visited[current])
+        {
             visited[current] = true; // Mark Visited
             cout<<current<<" ";
 
             // 3. Checking neighbors which are not visited.
-            for(auto u : graph[current]){
+            for(auto u : graph[current])
+            {
 
-                if( !visited[u] ){
+                if( !visited[u] )
+                {
                     visited[u] = true;
                     st.push(u);
                 }
@@ -90,14 +93,15 @@ void DFSit(int node, vector<vector<int>>& graph ){
 
 
 // 1. Undirected graph with Adj list
-void DFSug(int node , vector<vector<int>>& adj , vector<int>& visited){
-
+void DFSug(int node , vector<vector<int>>& adj , vector<int>& visited)
+{
     visited[node] = true;
     cout<<node<<" ";
 
-    for(auto u : adj[node]){
-
-        if(!visited[u]){
+    for(auto u : adj[node])
+    {
+        if(!visited[u])
+        {
             DFSug(u,adj,visited);
         }
     }
@@ -108,30 +112,35 @@ void DFSug(int node , vector<vector<int>>& adj , vector<int>& visited){
 
 //Code would be same the adj list make all difference.
 
-void DFSdg(int node, vector<vector<int>>& adj , vector<int>& visited){
-
+void DFSdg(int node, vector<vector<int>>& adj , vector<int>& visited)
+{
     visited[node] = true;
     cout<<node<<" ";
 
-    for(auto u: adj[node]){
-
-        if(!visited[u]){
+    for(auto u: adj[node])
+    {
+        if(!visited[u])
+        {
             DFSdg(u, adj, visited);
         }
     }
 }
 
+
 // 3. Graph with adj matrix
 
-void DFSam(int startNode, vector<vector<int>>& adjMatrix,vector<int>& visited , int Nodes){
+void DFSam(int startNode, vector<vector<int>>& adjMatrix,vector<int>& visited , int Nodes)
+{
     
     //1. Mark the current Node as Visited
     visited[startNode] = true;
     cout<<startNode<<" ";
 
-    for(int i=0 ; i <Nodes ; i++){
+    for(int i=0 ; i <Nodes ; i++)
+    {
         // 2. Check for Neighbor or not , and then Unvisited Neighbor or not.
-        if(!visited[i] && adjMatrix[startNode][i] == 1){
+        if(!visited[i] && adjMatrix[startNode][i] == 1)
+        {
             DFSam(i, adjMatrix, visited, Nodes);
         }
     }

@@ -1,6 +1,6 @@
 # Graph Algorithms — Roadmap & Structure
 
-[graphMindmap](/Algorithms/Graph/graph%20mindmap.png)
+![graphMindmap](/3_DSA/Algorithms/Graph/graph%20mindmap.png)
 ---
 
 ## Section 1 — Foundations: Traversal & Basic Shortest Paths

@@ -10,7 +10,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-class User{
+class User
+{
     private:
 
         userID
