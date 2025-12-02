@@ -13,7 +13,34 @@ using namespace std;
 
 */
 
+bool isTree( int n , int edgesCount , const vector<vector<int>>& adj )
+{
+  if ( edgesCount != n-1 ) return false;
+  if ( n == 0 ) return true;
 
+  vector <char> visited( n , 0 );
+  queue  <int>  q;
+
+  q.push(0);
+  visited[0] = 1;
+  int cnt = 1;
+  while (!q.empty())
+  {
+    int u = q.front();
+    q.pop();
+
+    for ( int v : adj[u] )
+    {
+      if(!visited[v])
+      {
+        visited[v] = 1;
+        q.push( v );
+        ++cnt;
+      }
+    }
+  }
+  return cnt == n;
+}
 
 
 /*
@@ -28,7 +55,33 @@ using namespace std;
 
 */
 
+bool isConnected ( int n , const vector<vector<int>>& adj)
+{
+  if ( n == 0 ) return true;
+  vector <char> visited(n,0);
+  queue  <int>  q;
 
+  q.push( 0 );
+  visited[0] = 1;
+  int cnt = 1;
+
+  while (!q.empty())
+  {
+    int u = q.front(); 
+    q.pop();
+
+    for ( int v : adj[u])
+    {
+      if (!visited[v])
+      {
+        visited[v] = 1;
+        q.push( v );
+        ++cnt;
+      }
+    }
+  }
+  return cnt == n;
+}
 
 /*
 
@@ -41,3 +94,38 @@ using namespace std;
   3. If you ever need to assign the same color to connected nodes, it is not bipartite.
 
 */
+
+bool isBipartite ( int n , const vector<vector<int>>& adj )
+{
+  vector <int> color( n , -1 );
+
+  for ( int i =0 ; i < n ; ++i )
+  {
+    if ( color[i] != -1 ) continue;
+
+    queue<int> q;
+    q.push( i );
+
+    color[i] = 0;
+
+    while ( !q.empty())
+    {
+      int u = q.front();
+      q.pop();
+      for( int v : adj[u])
+      {
+        if( color[v] == -1 )
+        {
+          color[v] = 1 - color[u];
+          q.push( v );
+        }
+        else if (color[v] == color[u])
+        {
+          return false;
+        }
+      }
+    }
+  }
+
+  return true;
+}
