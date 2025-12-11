@@ -8,34 +8,6 @@
 
 
 
-//using namespace std;
-
-/*
-
-The Flow :-
-1. Setup the listening port.
-2. Make if "Non-blocking" when these no request.
-3. Create epoll instance.
-4. Make the epoll listen to the port.
-5. Start the epoll Loop
-
-Task of epoll :-
-
-A. Epoll instance will sleep until these is a buzzer goes off.
-B. What event is that like
-C. Adding new task
-D. Or The older task need some thing like read something .
-
-
-*/
-
-// Helper
-/*
-
-Sets a file descriptor to "Non-Blocking" mode.
-If we don't do this, the server will freeze waiting for data.
-
-*/
 
 int set_nonblocking ( int fd )
 {
@@ -110,18 +82,49 @@ int main()
             {
                 // Data from an Existing Client
 
-                char buffer[1024] = {0};
-                int bytes = read (events[i].data.fd , buffer , 1024);
+                // RESP Parsing
 
-                if ( bytes <= 0 )
+                char buffer[1024] = {0};
+                int bytes = read( events[i].data.fd , buffer, 1024);
+
+                if(bytes <=0 )
                 {
                     close ( events[i].data.fd );
-                    std::cout << " Client Disconnected " << std::endl;
+                    std::cout << "Client Disconnected" << std::endl;
                 }
-                else 
+                else
                 {
-                    std::cout << "Client" << events[i].data.fd << " says: "<< buffer <<std::endl;
+                    // Use a Loop because null bytes might hide parts of the string
+
+                    std::cout << "Received Raw Bytes: ";
+                    for ( int j =0 ; j < bytes ; j++)
+                    {
+                        if ( buffer[j] == '\r') std::cout <<"\\r";
+                        else if(buffer[j] == '\n' ) std::cout << "\\n";
+                        else std::cout << buffer[j];
+                    }
+
+                    std::cout << std::endl;
+
+                    /*
+                    Check if the buffer contains "PING".
+                    Only the temparary PING parse.
+                    */
+
+                    std::string request(buffer , bytes);
+
+                    if( request.find("PING") != std::string::npos)
+                    {
+                        const char* response = "+PONG\r\n";
+                        send ( events[i].data.fd , response , 7 , 0 );
+                    }
+                    else{
+                        const char* err = "-ERR unknown command\r\n";
+                        send( events[i].data.fd, err , 22 , 0);
+                    }
                 }
+
+                
             }
         }
     }
